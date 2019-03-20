@@ -3,6 +3,6 @@
 
 // CWE-476: NULL Pointer Dereference
 // https://cwe.mitre.org/data/definitions/476.html
-void test_null_pointer_dereference();
+void test_null_pointer_dereference_warning();
 
 #endif
