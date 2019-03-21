@@ -1,5 +1,6 @@
 #include <stdlib.h>
 
+// CWE-126: Buffer Over-read
 // Пример ошибки с межпроцедурным вычислением индекса
 
 int plusOne(int x1){
