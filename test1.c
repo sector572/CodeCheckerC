@@ -19,7 +19,7 @@ void test_baz() {
 }
 
 void free_mem_by_pts(int*x, int* p, int m){
-	if(p==0) {
+	if (p==0) {
 
 	}
 	else {
@@ -31,22 +31,24 @@ void free_mem_by_pts(int*x, int* p, int m){
 			p = 0;
 	    }
 	}
-	if(m==0) {
+	if (m==0) {
 
 	}
-	else
+	else {
 	  test_free(x);
+	}
 
 	free(x);
 	free(p);
 }
 
-void test_path_sensitiv_no_errors(){
-	void *x = malloc(1);
-	void *p = malloc(1);
+void test_path_sensitiv_no_exceptions(){
+	int *x = (int*) malloc(1);
+	int *p = (int*) malloc(1);
 
 	free_mem_by_pts(x, p, 0);
-	free_mem_by_pts(0, p, 0);
+	// Должны быть предупреждения об использовании после освобождения 'x' и 'p'
+	free_mem_by_pts(0, p, 0); 
 	free_mem_by_pts(x, 0, 0);
 	free_mem_by_pts(0, 0, 0);
 	free_mem_by_pts(0, p, 5);
@@ -54,15 +56,15 @@ void test_path_sensitiv_no_errors(){
 }
 
 void test_path_sensitiv_with_errors(){
-	void *x = malloc(1);
-	void *p = malloc(1);
+	int *x = (int*) malloc(1);
+	int *p = (int*) malloc(1);
 
 	free_mem_by_pts(x, p, 5); // Ошибка двойного освобождения памяти
 	free_mem_by_pts(x, 0, 5); // Ошибка двойного освобождения памяти
 }
 
 void mem_multiple_free(){
-	test_path_sensitiv_no_errors(); // Код не вызывающий ошибок
+	test_path_sensitiv_no_exceptions(); // Код не вызывающий падения
 
 	test_bar(); // Ошибка для выявления контекстно-чувствительным анализом
 	test_baz(); // Ошибка для выявления контекстно-чувствительным анализом

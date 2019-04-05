@@ -8,7 +8,7 @@ int plusOne(int x1){
   if (x1 >= 10){ 
     x2 = 10; 
   } else {
-  	x2 = x1;
+    x2 = x1;
   }
   int res= x2 + 1; 
   return res; 
@@ -27,6 +27,6 @@ int idx = plusOne(4);
 } 
 
 void test_buffer_index() {
-	innerAccess1(10);
-	innerAccess2();
+  innerAccess1(10);
+  innerAccess2();
 }
